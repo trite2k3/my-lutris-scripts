@@ -1,0 +1,34 @@
+name: Dark and Darker
+game_slug: Dark and Darker
+version: A5
+slug: DnDA5
+runner: wine
+
+script:
+  files:
+  - vcpp32: https://aka.ms/vs/17/release/vc_redist.x86.exe
+  - vcpp64: https://aka.ms/vs/17/release/vc_redist.x64.exe
+  - dndA5: "N/A:Select the game's setup file"
+  game:
+    exe: drive_c/Program Files/IRONMACE/Dark and Darker A5/DungeonCrawler.exe 
+    prefix: $GAMEDIR
+    arch: win64
+  installer:
+  - task:
+      arch: win64
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      args: /silent
+      executable: vcpp32
+      name: wineexec
+      prefix: $GAMEDIR
+  - task:
+      args: /silent
+      executable: vcpp64
+      name: wineexec 
+      prefix: $GAMEDIR
+  - task:
+      executable: dndA5
+      name: wineexec
+      prefix: $GAMEDIR
