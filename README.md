@@ -1,2 +1,2 @@
-# DnDA5_lutris
-Install with "lutris -i dnda5.yml"
+# EVEMon_lutris
+Install with "lutris -i evemon.yml"

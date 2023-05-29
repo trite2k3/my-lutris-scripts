@@ -1,0 +1,21 @@
+name: EVEMon
+game_slug: EVEMon
+version: 3.0.4
+slug: EVEMon
+runner: wine
+
+script:
+  files:
+  - evemon_static: https://bitbucket.org/EVEMonDevTeam/evemon/downloads/EVEMon-binaries-3.0.4.zip 
+  game:
+    exe: $GAMEDIR/EVEMon/EVEMon.exe 
+    prefix: $GAMEDIR
+    arch: win64
+  installer:
+  - task:
+      arch: win64
+      name: create_prefix
+      prefix: $GAMEDIR
+  - extract:
+      file: evemon_static
+      dst: $GAMEDIR/EVEMon
