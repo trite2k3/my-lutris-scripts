@@ -1,3 +1,3 @@
-# EVEMon_lutris
-Install with "lutris -i evemon.yml"
-# evemon_lutris
+# lutris scripts
+Install with "lutris -i game.yml"
+# lutris scripts
