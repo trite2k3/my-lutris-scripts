@@ -8,7 +8,7 @@ script:
   files:
   - vcpp32: https://aka.ms/vs/17/release/vc_redist.x86.exe
   - vcpp64: https://aka.ms/vs/17/release/vc_redist.x64.exe
-  - dnd: "N/A:Select the game's setup file"
+  - dnd: "N/A:Select the game's setup file (https://webdown.darkanddarker.com/Blacksmith%20Installer.exe)"
   game:
     exe: drive_c/Program Files/IRONMACE/Dark and Darker/Blacksmithbootstrap.exe
     prefix: $GAMEDIR
