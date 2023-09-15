@@ -1,19 +1,40 @@
 name: Dark and Darker
-game_slug: Dark and Darker
-version: 1
-slug: DnD
+game_slug: dark-and-darker
+version: 1.2
+slug: dark-and-darker
+notes: "Dont launch Blacksmith after install just close the installer by pressing finish. \
+ Losing mouse focus requires you to alt-tab once for it to register again."
 runner: wine
 
 script:
   files:
+  - blacksmith: https://webdown.darkanddarker.com/Blacksmith%20Installer.exe
   - vcpp32: https://aka.ms/vs/17/release/vc_redist.x86.exe
   - vcpp64: https://aka.ms/vs/17/release/vc_redist.x64.exe
-  - dnd: "N/A:Select the game's setup file (https://webdown.darkanddarker.com/Blacksmith%20Installer.exe)"
   game:
-    exe: drive_c/Program Files/IRONMACE/Dark and Darker/Blacksmithbootstrap.exe
+    exe: drive_c/Program Files/IRONMACE/Blacksmith/Blacksmithbootstrap.exe
     prefix: $GAMEDIR
     arch: win64
   installer:
+  - task:
+      app: wininet urlmon
+      name: winetricks
+      prefix: $GAMEDIR
+      silent: true
+  - task:
+      key: urlmon
+      name: set_regedit
+      path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\DungeonCrawler.exe\DllOverrides
+      prefix: $GAMEDIR
+      type: REG_SZ
+      value: builtin
+  - task:
+      key: wininet
+      name: set_regedit
+      path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\DungeonCrawler.exe\DllOverrides
+      prefix: $GAMEDIR
+      type: REG_SZ
+      value: builtin
   - task:
       arch: win64
       name: create_prefix
@@ -29,6 +50,6 @@ script:
       name: wineexec 
       prefix: $GAMEDIR
   - task:
-      executable: dnd
+      executable: blacksmith
       name: wineexec
       prefix: $GAMEDIR
