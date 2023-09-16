@@ -1,3 +1,2 @@
 # lutris scripts
-Install with "lutris -i game.yml"
-# lutris scripts
+Install with "lutris -i /home/user/dnd.yml"
