@@ -12,7 +12,7 @@ script:
   - vcpp32: https://aka.ms/vs/17/release/vc_redist.x86.exe
   - vcpp64: https://aka.ms/vs/17/release/vc_redist.x64.exe
   game:
-    exe: drive_c/Program Files/IRONMACE/Blacksmith/Blacksmithbootstrap.exe
+    exe: drive_c/Program Files/IRONMACE/Blacksmith/BlacksmithBootstrap.exe
     prefix: $GAMEDIR
     arch: win64
   installer:
