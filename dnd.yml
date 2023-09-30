@@ -3,7 +3,8 @@ game_slug: dark-and-darker
 version: v0.6.1.1954
 slug: dark-and-darker
 notes: "Dont launch Blacksmith after install just close the installer by pressing finish. \
- Losing mouse focus requires you to alt-tab once for it to register again."
+ Losing mouse focus requires you to alt-tab once for it to register again.\ 
+ If your mouse shows up when you attack or left-click, change to fullscreen mode in options."
 runner: wine
 
 script:
