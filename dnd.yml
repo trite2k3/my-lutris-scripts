@@ -1,6 +1,6 @@
 name: Dark and Darker
 game_slug: dark-and-darker
-version: v0.6.1.2250
+version: v0.6.2.2497
 slug: dark-and-darker
 notes: "Dont launch Blacksmith after install just close the installer by pressing finish. \
  Losing mouse focus requires you to alt-tab once for it to register again.\ 
