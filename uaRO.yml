@@ -1,0 +1,22 @@
+name: ua Ragnarok Online
+game_slug: uaRO
+version: Installer
+slug: ua-Ragnarok-Online
+runner: wine
+
+script:
+  files:
+  - zipfile: "N/A:Select the game's setup file"
+
+  game:
+    exe: $GAMEDIR/Games/Patcher.exe
+    arch: win64
+
+  installer:
+  - extract:
+      dst: $GAMEDIR/drive_c/Games/
+      file: zipfile
+      format: zip
+  - task:
+      name: create_prefix
+      arch: win64
