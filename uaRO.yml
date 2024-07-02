@@ -9,7 +9,7 @@ script:
   - zipfile: "N/A:Select the game's setup file"
 
   game:
-    exe: $GAMEDIR/Games/Patcher.exe
+    exe: $GAMEDIR/drive_c/Games/Patcher.exe
     arch: win64
 
   installer:
