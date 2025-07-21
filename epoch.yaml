@@ -1,0 +1,85 @@
+description: "Wrath 3.3.5 Project Epoch client + updater (private server)."
+game_slug: world-of-warcraft-epoch
+gogslug: ''
+humblestoreid: ''
+installer_slug: world-of-warcraft-epoch-335
+name: World of Warcraft (Project Epoch)
+notes: |
+  This installer expects that you have already downloaded the full 3.3.5-enUS-minified.zip
+  World of Warcraft Wrath client (large download). When prompted, select that archive.
+  The installer will extract it into the Wine prefix at C:\project-epoch and then download
+  and place the Project Epoch launcher (EpochLauncher.exe) in the same folder.
+  If you get an error when launching that tells you to run as a normal user and not as administrator, change wine version (wine-10.8-staging-tkg-ntsync-x86_64 for example).
+runner: wine
+
+script:
+  files:
+    # User provides the Wrath client archive.
+    - client_zip: N/A Select your downloaded 3.3.5-enUS-minified.zip Wrath client archive.
+    # Download the Epoch installer (will be moved into the WoW folder).
+    - epoch_installer: https://github.com/Project-Epoch/epoch-updater-releases/releases/latest/download/epoch-installer.exe
+
+  game:
+    arch: win64
+    exe: drive_c/project-epoch/EpochLauncher.exe
+    prefix: $GAMEDIR
+
+  installer:
+    - task:
+        arch: win64
+        description: Creating 64bit Wine prefix.
+        name: create_prefix
+        prefix: $GAMEDIR
+
+    - task:
+        app: arial d3dx9 d3dcompiler_47 dxvk vcrun2013 vcrun2019
+        arch: win64
+        description: Installing Arial font.
+        name: winetricks
+        prefix: $GAMEDIR
+
+    - task:
+        arch: win64
+        description: "Wine Staging: Enabling DXVA2"
+        key: backend
+        name: set_regedit
+        path: HKEY_CURRENT_USER\\Software\\Wine\\DXVA2
+        prefix: $GAMEDIR
+        value: va
+
+    # Extract the WoW client.
+    - extract:
+        dst: $GAMEDIR/drive_c/project-epoch
+        src: $client_zip
+
+    # Move the Epoch installer into the WoW folder and rename it EpochLauncher.exe
+    - move:
+        src: $epoch_installer
+        dst: $GAMEDIR/drive_c/project-epoch/EpochLauncher.exe
+
+    # Kill Wine processes after install.
+    - task:
+        name: winekill
+
+  system:
+    env:
+      DXVK_HUD: compiler
+      DXVK_STATE_CACHE_PATH: $GAMEDIR
+      STAGING_SHARED_MEMORY: 1
+      __GL_SHADER_DISK_CACHE: 1
+      __GL_SHADER_DISK_CACHE_PATH: $GAMEDIR
+      __GL_DXVK_OPTIMIZATIONS: 1
+
+  wine:
+    battleye: false
+    eac: false
+    fsr: false
+    nvapi: disabled
+    nvapi64: disabled
+    overrides: null
+
+slug: world-of-warcraft-epoch-335
+steamid: null
+version: 3.3.5a (Project Epoch)
+year: 2008
+
