@@ -28,4 +28,4 @@ script:
 
   system:
     env:
-      WINEDEBUG: "-all"
+      WINE_XALIA_DISABLE: "1"
