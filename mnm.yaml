@@ -1,0 +1,31 @@
+name: "Monsters & Memories"
+game_slug: "monsters-and-memories"
+version: "Current Launcher Installer"
+slug: "monsters-and-memories"
+runner: "wine"
+
+script:
+  files:
+    - installer: "https://pub-f06cad9ebbcd412bb0f4ff64f0f6a3d7.r2.dev/launcher_v2/installer/Monsters%20%26%20Memories%20setup.exe"
+
+  game:
+    exe: "$GAMEDIR/drive_c/users/steamuser/AppData/Local/Monsters & Memories/mnm_launcher.exe"
+    working_dir: "$GAMEDIR/drive_c/MnM"
+
+  installer:
+    - task:
+        name: create_prefix
+        arch: win64
+
+    - task:
+        name: winetricks
+        app: vcrun2022 corefonts
+
+    - task:
+        name: wineexec
+        executable: installer
+        arch: win64
+
+  system:
+    env:
+      WINEDEBUG: "-all"
