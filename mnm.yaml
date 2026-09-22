@@ -10,7 +10,7 @@ script:
 
   game:
     exe: "$GAMEDIR/drive_c/users/steamuser/AppData/Local/Monsters & Memories/mnm_launcher.exe"
-    working_dir: "$GAMEDIR/drive_c/MnM"
+    working_dir: "$GAMEDIR/drive_c/users/steamuser/AppData/Local/Monsters & Memories"
 
   installer:
     - task:
