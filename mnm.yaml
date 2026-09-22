@@ -29,4 +29,3 @@ script:
   system:
     env:
       WINE_XALIA_DISABLE: "1"
-      SDL_MOUSE_RELATIVE: "0"
